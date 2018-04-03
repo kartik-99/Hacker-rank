@@ -10,11 +10,18 @@ class JavaBigDecimal{
         for(int i=0;i<n;i++){
             s[i]=sc.next();
         }
-      	sc.close();
+      	sc.close();        
 
 
-        Arrays.sort(s, (number1, number2) -> new BigDecimal(number2).compareTo(new BigDecimal(number1)));
-
+        Comparator<String> c = new Comparator<String>() {
+            @Override
+            public int compare(String one, String two) {
+                BigDecimal a = new BigDecimal(one);
+                BigDecimal b = new BigDecimal(two);
+                return b.compareTo(a); // descending order
+            }
+        };
+        Arrays.sort(s, 0, n, c);
 
 
         //Output
@@ -23,4 +30,5 @@ class JavaBigDecimal{
             System.out.println(s[i]);
         }
     }
+
 }
